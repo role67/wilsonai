@@ -117,7 +117,7 @@ def main() -> int:
     print_header("3. Проверка базовой функциональности")
     
     try:
-        from agent_state import AgentState, TTLCache
+        from wilsonai.agent.state import AgentState, TTLCache
         
         # Тест AgentState
         state = AgentState()
@@ -132,12 +132,12 @@ def main() -> int:
         print("[OK] TTLCache работает")
         
         # Тест констант
-        from constants import MESSAGES
+        from wilsonai.core.constants import MESSAGES
         assert "help" in MESSAGES
         print("[OK] Константы загружаются")
         
         # Тест исключений
-        from exceptions import ModelConnectionError
+        from wilsonai.core.exceptions import ModelConnectionError
         try:
             raise ModelConnectionError("test")
         except ModelConnectionError:

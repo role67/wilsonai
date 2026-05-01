@@ -5,7 +5,7 @@ from typing import Any
 
 from telethon.tl.custom import Message
 
-from config import DATA_DIR, MEMORY_DIR, SENT_MESSAGES_PATH, SYSTEM_PROMPT_PATH, settings
+from wilsonai.core.config import DATA_DIR, MEMORY_DIR, SENT_MESSAGES_PATH, SYSTEM_PROMPT_PATH, settings
 
 logger = logging.getLogger("telegram-agent")
 

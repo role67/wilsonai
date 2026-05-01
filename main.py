@@ -5,7 +5,7 @@ import os
 import sys
 from dataclasses import dataclass
 
-from config import settings
+from wilsonai.core.config import settings
 
 
 @dataclass(frozen=True)
@@ -104,7 +104,7 @@ def main() -> int:
     options = parse_args()
     validate_runtime_dependencies()
     validate_settings()
-    from telegram_agent import run
+    from wilsonai.telegram.agent import run
     if options.show_config:
         print_runtime_settings()
     if options.check_only:

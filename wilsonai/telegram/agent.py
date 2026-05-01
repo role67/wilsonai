@@ -17,20 +17,20 @@ from telethon.errors import FloodWaitError, PeerFloodError
 from telethon.tl import functions, types
 from telethon.tl.custom import Message
 
-from agent_prompts import ACCOUNT_ACTION_PATTERN
-from behavior import behavior_prompt, update_behavior_profile
-from config import DATA_DIR, MEMORY_DIR, PROMPTS_DIR, SYSTEM_PROMPT_PATH, settings
-from db import Database
-from model_client import ask_model, ModelConnectionError, ModelRateLimitError
-from storage import (
+from wilsonai.agent.prompts import ACCOUNT_ACTION_PATTERN
+from wilsonai.agent.behavior import behavior_prompt, update_behavior_profile
+from wilsonai.core.config import DATA_DIR, MEMORY_DIR, PROMPTS_DIR, SYSTEM_PROMPT_PATH, settings
+from wilsonai.data.db import Database
+from wilsonai.agent.model_client import ask_model, ModelConnectionError, ModelRateLimitError
+from wilsonai.agent.storage import (
     clear_history,
     read_system_prompt,
     remember_exchange,
     remember_observation,
 )
-from speech_to_text import transcribe_voice_message
-from voice_pipeline import maybe_send_voice_reply
-from telegram_actions import (
+from wilsonai.agent.speech_to_text import transcribe_voice_message
+from wilsonai.agent.voice_pipeline import maybe_send_voice_reply
+from wilsonai.telegram.actions import (
     bind_context as bind_actions_context,
     check_reply_status,
     delete_chat,

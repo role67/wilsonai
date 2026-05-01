@@ -7,16 +7,16 @@ import asyncio
 import logging
 from typing import Optional
 
-from agent_state import AgentState, get_state, PendingBatchItem
-from constants import MESSAGES, MOD_CHAT_USERNAME, INTENT_MARKERS
-from exceptions import (
+from wilsonai.agent.state import AgentState, get_state, PendingBatchItem
+from wilsonai.core.constants import MESSAGES, MOD_CHAT_USERNAME, INTENT_MARKERS
+from wilsonai.core.exceptions import (
     ModelConnectionError,
     DatabaseConnectionError,
     TelegramFloodError,
     AdminOnlyError,
 )
-from db_improved import DatabaseImproved
-from config import settings
+from wilsonai.data.db_improved import DatabaseImproved
+from wilsonai.core.config import settings
 
 
 # ============================================================================
@@ -134,7 +134,7 @@ def example_constants():
     
     # Было: MOD_CHAT_USERNAME = "chatkvadrobery"
     # Стало:
-    from constants import MOD_CHAT_USERNAME
+    from wilsonai.core.constants import MOD_CHAT_USERNAME
     
     chat_username = "chatkvadrobery"
     if chat_username == MOD_CHAT_USERNAME:
@@ -154,7 +154,7 @@ def example_constants():
     print(help_text)
     
     # Использование промптов для батчинга
-    from constants import BATCH_PROMPTS
+    from wilsonai.core.constants import BATCH_PROMPTS
     
     prompt_parts = [
         BATCH_PROMPTS["multiple_messages"],
@@ -171,7 +171,7 @@ def example_constants():
 async def example_model_errors():
     """Пример обработки ошибок AI модели."""
     
-    from model_client import ask_model
+    from wilsonai.agent.model_client import ask_model
     
     chat_id = 123456
     user_text = "Привет, как дела?"
@@ -210,7 +210,7 @@ async def example_model_errors():
 async def example_flood_protection():
     """Пример обработки Telegram flood protection."""
     
-    from telegram_actions import send_telegram_message
+    from wilsonai.telegram.actions import send_telegram_message
     
     state = get_state()
     
@@ -298,7 +298,7 @@ async def example_message_batching():
 def example_ttl_cache():
     """Пример использования TTL кэша."""
     
-    from agent_state import TTLCache
+    from wilsonai.agent.state import TTLCache
     
     # Создать кэш с TTL 60 секунд
     cache = TTLCache(ttl_seconds=60.0)

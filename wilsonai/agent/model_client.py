@@ -5,10 +5,10 @@ from typing import Any
 
 import httpx
 
-from agent_prompts import ACCOUNT_TOOLS_PROMPT, AUTONOMY_PROMPT
-from config import settings
-from storage import load_history, read_system_prompt
-from exceptions import (
+from wilsonai.agent.prompts import ACCOUNT_TOOLS_PROMPT, AUTONOMY_PROMPT
+from wilsonai.core.config import settings
+from wilsonai.agent.storage import load_history, read_system_prompt
+from wilsonai.core.exceptions import (
     ModelConnectionError,
     ModelRateLimitError,
     ModelTimeoutError,

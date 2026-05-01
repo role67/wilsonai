@@ -10,9 +10,9 @@ from telethon.errors import FloodWaitError, PeerFloodError
 from telethon.tl import functions
 from telethon.tl.custom import Message
 
-from agent_prompts import ACCOUNT_ACTION_PATTERN
-from config import DATA_DIR, settings
-from storage import load_sent_messages, remember_sent_message
+from wilsonai.agent.prompts import ACCOUNT_ACTION_PATTERN
+from wilsonai.core.config import DATA_DIR, settings
+from wilsonai.agent.storage import load_sent_messages, remember_sent_message
 
 logger = logging.getLogger("telegram-agent.actions")
 

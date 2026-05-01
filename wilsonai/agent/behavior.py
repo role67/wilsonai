@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Literal
 
-from config import DATA_DIR
+from wilsonai.core.config import DATA_DIR
 
 Flag = Literal["green", "yellow", "red"]
 

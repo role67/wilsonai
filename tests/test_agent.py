@@ -7,9 +7,9 @@ import pytest
 import time
 from unittest.mock import Mock, AsyncMock, patch
 
-from agent_state import AgentState, TTLCache, PendingBatchItem
-from behavior import update_behavior_profile, behavior_prompt
-from telegram_actions import (
+from wilsonai.agent.state import AgentState, TTLCache, PendingBatchItem
+from wilsonai.agent.behavior import update_behavior_profile, behavior_prompt
+from wilsonai.telegram.actions import (
     normalize_public_target,
     same_target,
     message_count_from_text,
@@ -285,7 +285,7 @@ class TestAutomoderation:
     
     def test_spam_score_calculation(self):
         """Тест подсчета спам-скора."""
-        from telegram_agent import _spam_score
+        from wilsonai.telegram.agent import _spam_score
         
         # Много ссылок
         text = "https://example.com https://test.com t.me/spam"
@@ -305,7 +305,7 @@ class TestAutomoderation:
     
     def test_abuse_score_calculation(self):
         """Тест подсчета оскорблений."""
-        from telegram_agent import _abuse_score
+        from wilsonai.telegram.agent import _abuse_score
         
         # Много мата
         text = "ты долбоеб и пидор"
@@ -317,7 +317,7 @@ class TestAutomoderation:
     
     def test_caps_words_count(self):
         """Тест подсчета слов капсом."""
-        from telegram_agent import _count_caps_words
+        from wilsonai.telegram.agent import _count_caps_words
         
         text = "ЭТО ОЧЕНЬ ВАЖНО ПОСЛУШАЙ МЕНЯ"
         assert _count_caps_words(text) >= 4
@@ -331,7 +331,7 @@ class TestMessageParsing:
     
     def test_strip_trigger_name(self):
         """Тест удаления триггерных имен."""
-        from telegram_agent import strip_trigger_name
+        from wilsonai.telegram.agent import strip_trigger_name
         
         found, cleaned = strip_trigger_name("вилсон привет как дела")
         assert found
@@ -345,7 +345,7 @@ class TestMessageParsing:
     
     def test_signal_spammy(self):
         """Тест обнаружения спамных сигналов."""
-        from telegram_agent import _signal_spammy
+        from wilsonai.telegram.agent import _signal_spammy
         
         # Много упоминаний
         assert _signal_spammy("@user1 @user2 @user3 @user4")
@@ -368,7 +368,7 @@ class TestMemoryCategories:
     
     def test_detect_memory_category(self):
         """Тест определения категории памяти."""
-        from telegram_agent import _detect_memory_category
+        from wilsonai.telegram.agent import _detect_memory_category
         
         assert _detect_memory_category("забань этого спамера") == "moderation"
         assert _detect_memory_category("пиши без запятых") == "style"
