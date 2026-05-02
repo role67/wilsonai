@@ -47,13 +47,15 @@ class Settings:
     session_name: str
     admin_id: int
     google_api_key: str
+    groq_api_key: str
+    reka_api_key: str
+    kiro_api_key: str
     model_provider: str
     fallback_provider: str | None
     deepseek_api_key: str | None
     deepseek_api_url: str
     cerebras_api_key: str | None
     cerebras_api_url: str
-    groq_api_key: str | None
     groq_api_url: str
     model: str
     fallback_models: tuple[str, ...]
@@ -61,6 +63,7 @@ class Settings:
     google_proxy: str | None
     google_timeout: float
     google_retries: int
+    use_model_router: bool
     max_history_messages: int
     temperature: float
     max_tokens: int
@@ -102,13 +105,15 @@ def load_settings() -> Settings:
         session_name=os.getenv("TELEGRAM_SESSION", "account"),
         admin_id=int(os.environ["ADMIN_ID"]),
         google_api_key=os.environ["GOOGLE_API_KEY"],
-        model_provider=os.getenv("MODEL_PROVIDER", "google").strip().lower(),
+        groq_api_key=os.environ.get("GROQ_API_KEY", ""),
+        reka_api_key=os.environ.get("REKA_API_KEY", ""),
+        kiro_api_key=os.environ.get("KIRO_API_KEY", ""),
+        model_provider=os.getenv("MODEL_PROVIDER", "router").strip().lower(),
         fallback_provider=(os.getenv("FALLBACK_PROVIDER") or "").strip().lower() or None,
         deepseek_api_key=os.getenv("DEEPSEEK_API_KEY") or None,
         deepseek_api_url=os.getenv("DEEPSEEK_API_URL", "https://api.deepseek.com/v1"),
         cerebras_api_key=os.getenv("CEREBRAS_API_KEY") or None,
         cerebras_api_url=os.getenv("CEREBRAS_API_URL", "https://api.cerebras.ai/v1"),
-        groq_api_key=os.getenv("GROQ_API_KEY") or None,
         groq_api_url=os.getenv("GROQ_API_URL", "https://api.groq.com/openai/v1"),
         model=os.getenv("GOOGLE_MODEL", "gemini-2.5-flash"),
         fallback_models=tuple(
@@ -122,6 +127,7 @@ def load_settings() -> Settings:
         google_proxy=os.getenv("GOOGLE_PROXY") or None,
         google_timeout=float(os.getenv("GOOGLE_TIMEOUT", "90")),
         google_retries=int(os.getenv("GOOGLE_RETRIES", "3")),
+        use_model_router=env_bool("USE_MODEL_ROUTER", True),
         max_history_messages=int(os.getenv("MAX_HISTORY_MESSAGES", "30")),
         temperature=float(os.getenv("TEMPERATURE", "0.7")),
         max_tokens=int(os.getenv("MAX_TOKENS", "1600")),
