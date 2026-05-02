@@ -7,15 +7,15 @@ import logging
 from typing import Any, Optional
 from dataclasses import dataclass
 
-from task_classifier import TaskClassifier, TaskType
-from model_providers import (
+from wilsonai.agent.task_classifier import TaskClassifier, TaskType
+from wilsonai.agent.model_providers import (
     GroqProvider,
     GeminiProvider,
     RekaProvider,
     KiroProvider,
     ModelResponse,
 )
-from exceptions import (
+from wilsonai.core.exceptions import (
     ModelConnectionError,
     ModelRateLimitError,
     ModelTimeoutError,

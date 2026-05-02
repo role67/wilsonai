@@ -10,7 +10,7 @@ from dataclasses import dataclass
 
 import httpx
 
-from exceptions import (
+from wilsonai.core.exceptions import (
     ModelConnectionError,
     ModelRateLimitError,
     ModelTimeoutError,
